@@ -181,6 +181,62 @@ app.get('/api/orders/:id', (req, res) => {
   });
 });
 
+// Create new order (PUBLIC ENDPOINT - no auth required)
+app.post('/api/orders', (req, res) => {
+  const { fullName, address, mobile, product, quantity } = req.body;
+  
+  // Validate required fields
+  if (!fullName || !address || !mobile || !product || !quantity) {
+    return res.status(400).json({
+      success: false,
+      message: 'All fields are required'
+    });
+  }
+  
+  // Generate order ID
+  const orderNumber = String(orders.length + 1).padStart(3, '0');
+  const order_id = `ORD2024${orderNumber}`;
+  
+  // Map product to product details
+  const productMap = {
+    'herbal-cream': {
+      product_id: 'PROD001',
+      product_name: 'ආත්තෝර ආලේපය',
+      price: 10000
+    }
+  };
+  
+  const productDetails = productMap[product] || productMap['herbal-cream'];
+  const qty = parseInt(quantity);
+  const total_amount = productDetails.price * qty;
+  
+  // Create new order
+  const newOrder = {
+    id: String(orders.length + 1),
+    order_id: order_id,
+    fullName: fullName,
+    address: address,
+    mobile: mobile,
+    product: product,
+    product_id: productDetails.product_id,
+    product_name: productDetails.product_name,
+    quantity: String(qty),
+    status: 'pending',
+    total_amount: total_amount,
+    createdAt: new Date().toISOString()
+  };
+  
+  orders.push(newOrder);
+  
+  console.log('New order created:', newOrder);
+  
+  res.status(201).json({
+    success: true,
+    message: 'Order created successfully',
+    data: newOrder
+  });
+});
+
 // Update order status
 app.put('/api/orders/:id/status', (req, res) => {
   const { status } = req.body;
