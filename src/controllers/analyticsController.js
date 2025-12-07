@@ -24,7 +24,7 @@ class AnalyticsController {
         if (order.status === 'pending') statusData[0].value++;
         else if (order.status === 'received') statusData[1].value++;
         else if (order.status === 'issued') statusData[2].value++;
-        else if (['sent-to-courier', 'in-transit', 'delivered'].includes(order.status)) statusData[3].value++;
+        else if (['sended', 'in-transit', 'delivered'].includes(order.status)) statusData[3].value++;
       });
       
       // Weekly data (last 7 days)

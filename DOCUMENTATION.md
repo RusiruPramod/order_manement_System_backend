@@ -160,7 +160,7 @@ CREATE TABLE orders (
   product_id VARCHAR(50),
   product_name VARCHAR(255),
   quantity INT NOT NULL,
-  status ENUM('pending', 'received', 'issued', 'sent-to-courier', 
+  status ENUM('pending', 'received', 'issued', 'sended', 
               'in-transit', 'delivered', 'cancelled') DEFAULT 'pending',
   notes TEXT,
   total_amount DECIMAL(10, 2),
@@ -466,7 +466,7 @@ Update order status
 **Request Body:**
 ```json
 {
-  "status": "sent-to-courier"
+  "status": "sended"
 }
 ```
 
@@ -474,7 +474,7 @@ Update order status
 - `pending`
 - `received`
 - `issued`
-- `sent-to-courier`
+- `sended`
 - `in-transit`
 - `delivered`
 - `cancelled`
@@ -486,7 +486,7 @@ Update order status
   "message": "Order status updated successfully",
   "data": {
     "id": 1,
-    "status": "sent-to-courier",
+    "status": "sended",
     ...
   }
 }
@@ -598,7 +598,7 @@ Get analytics data for charts
 #### GET /api/courier/orders
 Get all courier-related orders
 
-Returns orders with status: `sent-to-courier`, `in-transit`, or `delivered`
+Returns orders with status: `sended`, `in-transit`, or `delivered`
 
 **Response:**
 ```json
@@ -609,7 +609,7 @@ Returns orders with status: `sent-to-courier`, `in-transit`, or `delivered`
       "id": 4,
       "order_id": "ORD20250612004",
       "fullName": "Anil Silva",
-      "status": "sent-to-courier",
+      "status": "sended",
       ...
     }
   ]
@@ -811,7 +811,7 @@ curl http://localhost:3030/api/orders/1
 # Update status
 curl -X PUT http://localhost:3030/api/orders/1/status \
   -H "Content-Type: application/json" \
-  -d '{"status":"sent-to-courier"}'
+  -d '{"status":"sended"}'
 ```
 
 ### Database Testing

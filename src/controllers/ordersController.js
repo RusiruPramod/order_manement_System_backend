@@ -181,7 +181,7 @@ class OrdersController {
         });
       }
       
-      const validStatuses = ['pending', 'received', 'issued', 'sent-to-courier', 'in-transit', 'delivered'];
+      const validStatuses = ['pending', 'received', 'issued', 'sended', 'in-transit', 'delivered'];
       if (!validStatuses.includes(status)) {
         return res.status(400).json({
           success: false,
@@ -248,7 +248,7 @@ class OrdersController {
         });
       }
       
-      const updatedOrder = await Order.updateStatus(id, 'sent-to-courier');
+      const updatedOrder = await Order.updateStatus(id, 'sended');
       
       res.status(200).json({
         success: true,
@@ -310,23 +310,23 @@ class OrdersController {
         { 
           status: "received", 
           label: "Order Received", 
-          date: ['received', 'issued', 'sent-to-courier', 'in-transit', 'delivered'].includes(order.status) ? 
+          date: ['received', 'issued', 'sended', 'in-transit', 'delivered'].includes(order.status) ? 
                 order.updatedAt : null,
-          completed: ['received', 'issued', 'sent-to-courier', 'in-transit', 'delivered'].includes(order.status)
+          completed: ['received', 'issued', 'sended', 'in-transit', 'delivered'].includes(order.status)
         },
         { 
           status: "issued", 
           label: "Order Issued", 
-          date: ['issued', 'sent-to-courier', 'in-transit', 'delivered'].includes(order.status) ? 
+          date: ['issued', 'sended', 'in-transit', 'delivered'].includes(order.status) ? 
                 order.updatedAt : null,
-          completed: ['issued', 'sent-to-courier', 'in-transit', 'delivered'].includes(order.status)
+          completed: ['issued', 'sended', 'in-transit', 'delivered'].includes(order.status)
         },
         { 
-          status: "sent-to-courier", 
+          status: "sended", 
           label: "Sent to Courier", 
-          date: ['sent-to-courier', 'in-transit', 'delivered'].includes(order.status) ? 
+          date: ['sended', 'in-transit', 'delivered'].includes(order.status) ? 
                 order.updatedAt : null,
-          completed: ['sent-to-courier', 'in-transit', 'delivered'].includes(order.status)
+          completed: ['sended', 'in-transit', 'delivered'].includes(order.status)
         },
         { 
           status: "in-transit", 

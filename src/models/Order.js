@@ -190,7 +190,7 @@ class Order {
         SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending,
         SUM(CASE WHEN status = 'received' THEN 1 ELSE 0 END) as received,
         SUM(CASE WHEN status = 'issued' THEN 1 ELSE 0 END) as issued,
-        SUM(CASE WHEN status IN ('sent-to-courier', 'in-transit', 'delivered') THEN 1 ELSE 0 END) as courier,
+        SUM(CASE WHEN status IN ('sended', 'in-transit', 'delivered') THEN 1 ELSE 0 END) as courier,
         SUM(CASE WHEN DATE(createdAt) = CURDATE() THEN 1 ELSE 0 END) as today,
         SUM(CASE WHEN MONTH(createdAt) = MONTH(CURDATE()) AND YEAR(createdAt) = YEAR(CURDATE()) THEN 1 ELSE 0 END) as monthly,
         SUM(total_amount) as total_revenue

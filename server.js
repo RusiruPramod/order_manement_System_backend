@@ -70,7 +70,7 @@ let orders = [
     product_id: 'PROD001',
     product_name: 'NIRVAAN 5KG (100% PURE COCONUT OIL)',
     quantity: '2',
-    status: 'sent-to-courier',
+    status: 'sended',
     total_amount: 20000.00,
     createdAt: '2024-01-04T10:00:00Z'
   }
@@ -142,7 +142,7 @@ app.get('/api/dashboard/stats', (req, res) => {
     pending: orders.filter(o => o.status === 'pending').length,
     received: orders.filter(o => o.status === 'received').length,
     issued: orders.filter(o => o.status === 'issued').length,
-    courier: orders.filter(o => o.status === 'sent-to-courier' || o.status === 'in-transit').length,
+    courier: orders.filter(o => o.status === 'sended' || o.status === 'in-transit').length,
     today: orders.filter(o => {
       const orderDate = new Date(o.createdAt).toDateString();
       const today = new Date().toDateString();
@@ -286,7 +286,7 @@ app.put('/api/orders/:id/status', (req, res) => {
   }
   
   // Validate status
-  const validStatuses = ['pending', 'received', 'issued', 'sent-to-courier', 'in-transit', 'delivered', 'cancelled'];
+  const validStatuses = ['pending', 'received', 'issued', 'sended', 'in-transit', 'delivered', 'cancelled'];
   if (!status || !validStatuses.includes(status)) {
     return res.status(400).json({
       success: false,
@@ -332,7 +332,7 @@ app.get('/api/analytics', (req, res) => {
     },
     { 
       name: "Sent to Courier", 
-      value: orders.filter(o => o.status === 'sent-to-courier').length, 
+      value: orders.filter(o => o.status === 'sended').length, 
       color: "#8b5cf6" 
     }
   ];
@@ -350,7 +350,7 @@ app.get('/api/analytics', (req, res) => {
 // Courier routes
 app.get('/api/courier/orders', (req, res) => {
   const courierOrders = orders.filter(o => 
-    o.status === 'sent-to-courier' || 
+    o.status === 'sended' || 
     o.status === 'in-transit' || 
     o.status === 'delivered'
   );

@@ -73,7 +73,7 @@ const createDatabase = async () => {
         product_id VARCHAR(20) NOT NULL,
         product_name VARCHAR(200) NOT NULL,
         quantity INT NOT NULL,
-        status ENUM('pending', 'received', 'issued', 'sent-to-courier', 'in-transit', 'delivered') DEFAULT 'pending',
+        status ENUM('pending', 'received', 'issued', 'sended', 'in-transit', 'delivered') DEFAULT 'pending',
         notes TEXT,
         total_amount DECIMAL(10, 2),
         createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -199,7 +199,7 @@ const createDatabase = async () => {
         product_id: 'PROD001',
         product_name: 'NIRVAAN 5KG (100% PURE COCONUT OIL)',
         quantity: 1,
-        status: 'sent-to-courier',
+        status: 'sended',
         total_amount: 10000.00
       },
       {

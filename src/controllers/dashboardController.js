@@ -82,7 +82,7 @@ class DashboardController {
           'pending': 'Pending',
           'received': 'Received',
           'issued': 'Issued',
-          'sent-to-courier': 'Sent to Courier',
+          'sended': 'Sent to Courier',
           'in-transit': 'In Transit',
           'delivered': 'Delivered'
         };

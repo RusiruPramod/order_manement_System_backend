@@ -331,7 +331,7 @@ app.put('/api/orders/:id/status', async (req, res) => {
     }
     
     // Validate status
-    const validStatuses = ['pending', 'received', 'issued', 'sent-to-courier', 'in-transit', 'delivered', 'cancelled'];
+    const validStatuses = ['pending', 'received', 'issued', 'sended', 'in-transit', 'delivered', 'cancelled'];
     if (!status || !validStatuses.includes(status)) {
       return res.status(400).json({
         success: false,
@@ -479,7 +479,7 @@ app.get('/api/courier/orders', async (req, res) => {
   try {
     const orders = await Order.getAll();
     const courierOrders = orders.filter(o => 
-      o.status === 'sent-to-courier' || 
+      o.status === 'sended' || 
       o.status === 'in-transit' || 
       o.status === 'delivered'
     );
