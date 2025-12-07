@@ -582,10 +582,7 @@ Get analytics data for charts
     "totalRevenue": 640000,
     "totalOrders": 64,
     "statusData": [
-      { "name": "Pending", "value": 12, "color": "#f59e0b" },
-      { "name": "Received", "value": 15, "color": "#3b82f6" },
-      { "name": "Issued", "value": 20, "color": "#10b981" },
-      { "name": "Sent to Courier", "value": 10, "color": "#8b5cf6" }
+      { "name": "Received", "value": 15, "color": "#eab308" }
     ]
   }
 }

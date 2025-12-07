@@ -429,24 +429,9 @@ app.get('/api/analytics', async (req, res) => {
     
     const statusData = [
       { 
-        name: "Pending", 
-        value: parseInt(stats.pending) || 0, 
-        color: "#f59e0b" 
-      },
-      { 
         name: "Received", 
         value: parseInt(stats.received) || 0, 
-        color: "#3b82f6" 
-      },
-      { 
-        name: "Issued", 
-        value: parseInt(stats.issued) || 0, 
-        color: "#10b981" 
-      },
-      { 
-        name: "Sent to Courier", 
-        value: parseInt(stats.courier) || 0, 
-        color: "#8b5cf6" 
+        color: "#eab308" 
       }
     ];
     

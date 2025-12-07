@@ -14,17 +14,11 @@ class AnalyticsController {
       
       // Status distribution
       const statusData = [
-        { name: "Pending", value: 0, color: "#f59e0b" },
-        { name: "Received", value: 0, color: "#3b82f6" },
-        { name: "Issued", value: 0, color: "#10b981" },
-        { name: "Courier", value: 0, color: "#8b5cf6" }
+        { name: "Received", value: 0, color: "#eab308" }
       ];
       
       orders.forEach(order => {
-        if (order.status === 'pending') statusData[0].value++;
-        else if (order.status === 'received') statusData[1].value++;
-        else if (order.status === 'issued') statusData[2].value++;
-        else if (['sended', 'in-transit', 'delivered'].includes(order.status)) statusData[3].value++;
+        if (order.status === 'received') statusData[0].value++;
       });
       
       // Weekly data (last 7 days)

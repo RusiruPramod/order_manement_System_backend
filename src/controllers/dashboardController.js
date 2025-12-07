@@ -68,29 +68,12 @@ class DashboardController {
       const orders = await Order.getAll();
       
       const statusData = [
-        { name: "Pending", value: 0, color: "#f59e0b" },
-        { name: "Received", value: 0, color: "#3b82f6" },
-        { name: "Issued", value: 0, color: "#10b981" },
-        { name: "Sent to Courier", value: 0, color: "#8b5cf6" },
-        { name: "In Transit", value: 0, color: "#6366f1" },
-        { name: "Delivered", value: 0, color: "#ef4444" }
+        { name: "Received", value: 0, color: "#eab308" }
       ];
       
       orders.forEach(order => {
-        const status = order.status.toLowerCase();
-        const statusMap = {
-          'pending': 'Pending',
-          'received': 'Received',
-          'issued': 'Issued',
-          'sended': 'Sent to Courier',
-          'in-transit': 'In Transit',
-          'delivered': 'Delivered'
-        };
-        
-        const statusName = statusMap[status] || 'Pending';
-        const statusItem = statusData.find(s => s.name === statusName);
-        if (statusItem) {
-          statusItem.value++;
+        if (order.status === 'received') {
+          statusData[0].value++;
         }
       });
       

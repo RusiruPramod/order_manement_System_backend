@@ -316,24 +316,9 @@ app.get('/api/analytics', (req, res) => {
   const totalRevenue = orders.reduce((sum, order) => sum + order.total_amount, 0);
   const statusData = [
     { 
-      name: "Pending", 
-      value: orders.filter(o => o.status === 'pending').length, 
-      color: "#f59e0b" 
-    },
-    { 
       name: "Received", 
       value: orders.filter(o => o.status === 'received').length, 
-      color: "#3b82f6" 
-    },
-    { 
-      name: "Issued", 
-      value: orders.filter(o => o.status === 'issued').length, 
-      color: "#10b981" 
-    },
-    { 
-      name: "Sent to Courier", 
-      value: orders.filter(o => o.status === 'sended').length, 
-      color: "#8b5cf6" 
+      color: "#eab308" 
     }
   ];
   
