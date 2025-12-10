@@ -186,7 +186,7 @@ app.get('/api/dashboard/stats', async (req, res) => {
     const formattedStats = {
       success: true,
       total: parseInt(stats.total) || 0,
-      pending: parseInt(stats.pending) || 0,
+      pending: parseInt(stats.received) || 0,
       received: parseInt(stats.received) || 0,
       issued: parseInt(stats.issued) || 0,
       courier: parseInt(stats.courier) || 0,
@@ -331,7 +331,7 @@ app.put('/api/orders/:id/status', async (req, res) => {
     }
     
     // Validate status
-    const validStatuses = ['pending', 'received', 'issued', 'sended', 'in-transit', 'delivered', 'cancelled'];
+    const validStatuses = ['received', 'received', 'issued', 'sended', 'in-transit', 'delivered', 'cancelled'];
     if (!status || !validStatuses.includes(status)) {
       return res.status(400).json({
         success: false,

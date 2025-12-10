@@ -54,7 +54,7 @@ class Order {
       product_id, 
       product_name, 
       quantity, 
-      status = 'pending',
+      status = 'received',
       notes = '',
       total_amount 
     } = orderData;
@@ -187,7 +187,7 @@ class Order {
     const sql = `
       SELECT 
         COUNT(*) as total,
-        SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending,
+        SUM(CASE WHEN status = 'received' THEN 1 ELSE 0 END) as pending,
         SUM(CASE WHEN status = 'received' THEN 1 ELSE 0 END) as received,
         SUM(CASE WHEN status = 'issued' THEN 1 ELSE 0 END) as issued,
         SUM(CASE WHEN status IN ('sended', 'in-transit', 'delivered') THEN 1 ELSE 0 END) as courier,

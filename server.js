@@ -28,7 +28,7 @@ let orders = [
     product_id: 'PROD001',
     product_name: 'NIRVAAN 5KG (100% PURE COCONUT OIL)',
     quantity: '2',
-    status: 'pending',
+    status: 'received',
     total_amount: 20000.00,
     createdAt: '2024-01-01T10:00:00Z'
   },
@@ -56,7 +56,7 @@ let orders = [
     product_id: 'PROD001',
     product_name: 'NIRVAAN 5KG (100% PURE COCONUT OIL)',
     quantity: '1',
-    status: 'issued',
+    status: 'received',
     total_amount: 10000.00,
     createdAt: '2024-01-03T10:00:00Z'
   },
@@ -139,7 +139,7 @@ app.post('/api/auth/login', (req, res) => {
 app.get('/api/dashboard/stats', (req, res) => {
   const stats = {
     total: orders.length,
-    pending: orders.filter(o => o.status === 'pending').length,
+    pending: orders.filter(o => o.status === 'received').length,
     received: orders.filter(o => o.status === 'received').length,
     issued: orders.filter(o => o.status === 'issued').length,
     courier: orders.filter(o => o.status === 'sended' || o.status === 'in-transit').length,
@@ -248,7 +248,7 @@ app.post('/api/orders', (req, res) => {
     product_id: productDetails.product_id,
     product_name: productDetails.product_name,
     quantity: String(qty),
-    status: 'pending',
+    status: 'received',
     total_amount: total_amount,
     createdAt: new Date().toISOString()
   };
@@ -286,7 +286,7 @@ app.put('/api/orders/:id/status', (req, res) => {
   }
   
   // Validate status
-  const validStatuses = ['pending', 'received', 'issued', 'sended', 'in-transit', 'delivered', 'cancelled'];
+  const validStatuses = [ 'received',  'sended'];
   if (!status || !validStatuses.includes(status)) {
     return res.status(400).json({
       success: false,
@@ -358,7 +358,7 @@ app.post('/api/inquiries', (req, res) => {
   const inquiry = {
     id: (inquiries.length + 1).toString(),
     ...req.body,
-    status: 'pending',
+    status: 'received',
     createdAt: new Date().toISOString()
   };
   

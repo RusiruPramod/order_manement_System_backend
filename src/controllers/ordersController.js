@@ -181,7 +181,7 @@ class OrdersController {
         });
       }
       
-      const validStatuses = ['pending', 'received', 'issued', 'sended', 'in-transit', 'delivered'];
+      const validStatuses = ['received', 'received', 'issued', 'sended', 'in-transit', 'delivered'];
       if (!validStatuses.includes(status)) {
         return res.status(400).json({
           success: false,
@@ -302,7 +302,7 @@ class OrdersController {
       
       const timeline = [
         { 
-          status: "pending", 
+          status: "received", 
           label: "Order Placed", 
           date: order.createdAt,
           completed: true 

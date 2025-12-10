@@ -110,7 +110,7 @@ async function testDatabaseConnection() {
       const stats = await Order.getDashboardStats();
       console.log('✅ Dashboard stats retrieved successfully:');
       console.log(`   Total Orders: ${stats.total}`);
-      console.log(`   Pending: ${stats.pending}`);
+      console.log(`   Received: ${stats.pending}`);
       console.log(`   Received: ${stats.received}`);
       console.log(`   Issued: ${stats.issued}`);
       console.log(`   Courier: ${stats.courier}`);
@@ -131,7 +131,7 @@ async function testDatabaseConnection() {
         product_id: 'PROD001',
         product_name: 'Test Product',
         quantity: 1,
-        status: 'pending',
+        status: 'received',
         total_amount: 10000
       });
       

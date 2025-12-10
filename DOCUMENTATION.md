@@ -160,8 +160,8 @@ CREATE TABLE orders (
   product_id VARCHAR(50),
   product_name VARCHAR(255),
   quantity INT NOT NULL,
-  status ENUM('pending', 'received', 'issued', 'sended', 
-              'in-transit', 'delivered', 'cancelled') DEFAULT 'pending',
+  status ENUM('received', 'received', 'issued', 'sended', 
+              'in-transit', 'delivered', 'cancelled') DEFAULT 'received',
   notes TEXT,
   total_amount DECIMAL(10, 2),
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -351,7 +351,7 @@ User login
 Get all orders with optional filtering
 
 **Query Parameters:**
-- `status` - Filter by status (pending, received, issued, etc.)
+- `status` - Filter by status (received, received, issued, etc.)
 - `search` - Search by name, mobile, or order ID
 - `startDate` - Filter by date range (YYYY-MM-DD)
 - `endDate` - Filter by date range (YYYY-MM-DD)
@@ -359,7 +359,7 @@ Get all orders with optional filtering
 
 **Example:**
 ```
-GET /api/orders?status=pending&limit=10
+GET /api/orders?status=received&limit=10
 ```
 
 **Response:**
@@ -471,7 +471,7 @@ Update order status
 ```
 
 **Valid Status Values:**
-- `pending`
+- `received`
 - `received`
 - `issued`
 - `sended`
