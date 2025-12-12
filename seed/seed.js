@@ -26,8 +26,8 @@ const createDatabase = async () => {
 
     // Drop tables if exists (for clean seed)
     console.log('Dropping existing tables...');
-    await connection.query('DROP TABLE IF EXISTS products');
     await connection.query('DROP TABLE IF EXISTS orders');
+    await connection.query('DROP TABLE IF EXISTS products');
     await connection.query('DROP TABLE IF EXISTS users');
 
     // Create users table
@@ -61,7 +61,7 @@ const createDatabase = async () => {
       )
     `);
 
-    // Create orders table
+    // Create orders table (FIXED)
     console.log('Creating orders table...');
     await connection.query(`
       CREATE TABLE orders (
@@ -70,10 +70,10 @@ const createDatabase = async () => {
         fullName VARCHAR(100) NOT NULL,
         address TEXT NOT NULL,
         mobile VARCHAR(15) NOT NULL,
-        product_id VARCHAR(20) NOT NULL,
+        product_id VARCHAR(20),  -- FIXED: removed NOT NULL
         product_name VARCHAR(200) NOT NULL,
         quantity INT NOT NULL,
-        status ENUM('received', 'received', 'issued', 'sended', 'in-transit', 'delivered') DEFAULT 'received',
+        status ENUM('received', 'issued', 'sended', 'in-transit', 'delivered') DEFAULT 'received',
         notes TEXT,
         total_amount DECIMAL(10, 2),
         createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
